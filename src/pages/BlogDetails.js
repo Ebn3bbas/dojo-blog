@@ -10,12 +10,15 @@ const BlogDetails = () => {
   const [body, setBody] = useState("");
   const [author, setAuther] = useState("");
 
+  const blogData = { title, body, author };
   const {
     data: blog,
     isLoading,
     error,
+    setTrigger,
   } = useFetch("http://localhost:8000/blogs/" + id);
   const history = useHistory();
+
   const handleClick = (id) => {
     fetch("http://localhost:8000/blogs/" + id, {
       method: "DELETE",
@@ -27,12 +30,12 @@ const BlogDetails = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:8000/blogs", {
-      method: "UPDATE",
+    fetch("http://localhost:8000/blogs/" + id, {
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(blog),
+      body: JSON.stringify(blogData),
     }).then(() => {
-      history.push(`/blogs/${blog?.id}`);
+      setTrigger((prev) => !prev);
     });
   };
   useEffect(() => {
@@ -50,10 +53,10 @@ const BlogDetails = () => {
         <>
           {" "}
           <article>
-            <button onClick={() => handleClick(blog.id)}>X</button>
-            <h2>{title}</h2>
-            <p>Written by: {author}</p>
-            <div>{body}</div>
+            <button onClick={() => handleClick(blog?.id)}>X</button>
+            <h2>{blog?.title}</h2>
+            <p>Written by: {blog?.author}</p>
+            <div>{blog?.body}</div>
           </article>
           <div className="create">
             <h2>update blog</h2>
