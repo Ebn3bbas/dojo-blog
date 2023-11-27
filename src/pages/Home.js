@@ -2,12 +2,6 @@ import BlogList from "../components/BlogList";
 import Loading from "../components/Loading";
 import useFetch from "../hooks/uesFetch";
 const Home = () => {
-  // const handleDelete = (id) =>
-  // {
-  //     const newBlogs = blogs.filter((blog) => blog.id != id);
-  //     setBlogs(newBlogs);
-  // }
-
   const {
     data: blogs,
     isLoading,
@@ -19,7 +13,6 @@ const Home = () => {
       {error && <div>{error}</div>}
       {isLoading && <Loading />}
       {blogs && <BlogList blogs={blogs} title="All Blogs" />}
-      {/*<BlogList blogs={blogs.filter(blog => blog.auther === 'abdo')} title="Abdo`s Blogs" handleDelete={handleDelete}/>*/}
     </div>
   );
 };

@@ -1,10 +1,6 @@
 import { Link } from "react-router-dom";
 
-const BlogList = (
-  { blogs, title } /*props => {what attributes i need + i can pass fun}*/
-) => {
-  //  const blogs = props.blogs;
-  //   const title = props.title;
+const BlogList = ({ blogs, title }) => {
   return (
     <div className="blog-list">
       <h2>{title}</h2>
@@ -14,8 +10,6 @@ const BlogList = (
             <h2>{blog.title}</h2>
             <p>Written by {blog.author}</p>
           </Link>
-
-          {/* <button onClick={() => handleDelete(blog.id)}>X</button> */}
         </div>
       ))}
     </div>
